@@ -18,6 +18,7 @@ func main() {
 	productService = product.NewService(productRepository)
 
 	r := chi.NewRouter()
+
 	r.Mount("/products", product.MakeHttpHandler(productService))
 	http.ListenAndServe(":3000", r)
 }
