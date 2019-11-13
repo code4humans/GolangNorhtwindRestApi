@@ -6,6 +6,7 @@ import (
 
 type Service interface {
 	GetEmployees(params *getEmployeesRequest) (*EmployeeList, error)
+	GetEmployeeById(param *getEmployeeByIDRequest) (*Employee, error)
 }
 
 type service struct {
@@ -26,4 +27,8 @@ func (s *service) GetEmployees(params *getEmployeesRequest) (*EmployeeList, erro
 		Data:         employees,
 		TotalRecords: totalEmployees,
 	}, nil
+}
+
+func (s *service) GetEmployeeById(param *getEmployeeByIDRequest) (*Employee, error) {
+	return s.repo.GetEmployeeById(param)
 }

@@ -9,6 +9,7 @@ import (
 type Repository interface {
 	GetEmployees(params *getEmployeesRequest) ([]*Employee, error)
 	GetTotalEmployees() (int64, error)
+	GetEmployeeById(param *getEmployeeByIDRequest) (*Employee, error)
 }
 
 type repository struct {
@@ -53,4 +54,20 @@ func (repo *repository) GetTotalEmployees() (int64, error) {
 	err := row.Scan(&total)
 	helper.Catch(err)
 	return total, nil
+}
+
+func (repo *repository) GetEmployeeById(param *getEmployeeByIDRequest) (*Employee, error) {
+	const sql = `SELECT id,first_name,last_name,company,email_address,
+	             job_title,business_phone,home_phone,
+				COALESCE(mobile_phone,''),fax_number,address
+				FROM employees
+				WHERE id=?`
+	row := repo.db.QueryRow(sql, param.EmployeeID)
+	employee := &Employee{}
+	err := row.Scan(&employee.ID, &employee.FirstName, &employee.LastName, &employee.Company,
+		&employee.EmailAddress, &employee.JobTitle, &employee.BusinessPhone, &employee.HomePhone,
+		&employee.MobilePhone, &employee.FaxNumber, &employee.Address)
+	helper.Catch(err)
+
+	return employee, nil
 }
