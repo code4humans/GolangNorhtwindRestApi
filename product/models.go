@@ -14,3 +14,14 @@ type ProductList struct {
 	Data         []*Product `json:"data"`
 	TotalRecords int        `json:"totalRecords"`
 }
+
+type ProductTop struct {
+	ID          int     `json:"id"`
+	ProductName string  `json:"product_name"`
+	Vendidos    float64 `json:"vendidos"`
+}
+
+type ProductTopResponse struct {
+	Data        []*ProductTop `json:"data"`
+	TotalVentas float64       `json:"totalVentas"`
+}

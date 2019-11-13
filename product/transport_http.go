@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/GolangNorhtwindRestApi/helper"
 	"github.com/go-chi/chi"
 	kithttp "github.com/go-kit/kit/transport/http"
 )
@@ -34,6 +35,10 @@ func MakeHttpHandler(s Service) http.Handler {
 	deleteProductHandler := kithttp.NewServer(makeDeleteProductEndpoint(s),
 		getDeleteProductRequestDecoder, kithttp.EncodeJSONResponse)
 	r.Method(http.MethodDelete, "/{id}", deleteProductHandler)
+
+	getBestSellerHandler := kithttp.NewServer(makeBestSellersEndpoint(s),
+		getBestSellerRequestDecoder, kithttp.EncodeJSONResponse)
+	r.Method(http.MethodGet, "/bestSellers", getBestSellerHandler)
 	return r
 }
 func getProductByIdRequestDecoder(context context.Context, r *http.Request) (interface{}, error) {
@@ -46,27 +51,21 @@ func getProductByIdRequestDecoder(context context.Context, r *http.Request) (int
 func getProductsRequestDecoder(context context.Context, r *http.Request) (interface{}, error) {
 	request := getProductsRequest{}
 	err := json.NewDecoder(r.Body).Decode(&request)
-	if err != nil {
-		panic(err)
-	}
+	helper.Catch(err)
 	return request, nil
 }
 
 func addProductRequestDecoder(_ context.Context, r *http.Request) (interface{}, error) {
 	request := getAddProductRequest{}
 	err := json.NewDecoder(r.Body).Decode(&request)
-	if err != nil {
-		panic(err)
-	}
+	helper.Catch(err)
 	return request, nil
 }
 
 func updateProductRequestDecoder(_ context.Context, r *http.Request) (interface{}, error) {
 	request := updateProductRequest{}
 	err := json.NewDecoder(r.Body).Decode(&request)
-	if err != nil {
-		panic(err)
-	}
+	helper.Catch(err)
 	return request, nil
 }
 
@@ -74,4 +73,7 @@ func getDeleteProductRequestDecoder(context context.Context, r *http.Request) (i
 	return deleteProductRequest{
 		ProductID: chi.URLParam(r, "id"),
 	}, nil
+}
+func getBestSellerRequestDecoder(context context.Context, r *http.Request) (interface{}, error) {
+	return getBestSellersRequest{}, nil
 }
