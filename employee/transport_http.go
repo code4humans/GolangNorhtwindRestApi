@@ -33,6 +33,10 @@ func MakeHttpHandler(s Service) http.Handler {
 	updateEmployeeHandler := kithttp.NewServer(makeUpdateEmployeeEndpoint(s),
 		getUpdateEmployeeRequestDecoder, kithttp.EncodeJSONResponse)
 	r.Method(http.MethodPut, "/", updateEmployeeHandler)
+
+	deleteEmployeeHandler := kithttp.NewServer(makeDeleteEmployeeEndpoint(s),
+		getDeleteEmployeeRequestDecoder, kithttp.EncodeJSONResponse)
+	r.Method(http.MethodDelete, "/{id}", deleteEmployeeHandler)
 	return r
 }
 
@@ -65,4 +69,10 @@ func getUpdateEmployeeRequestDecoder(_ context.Context, r *http.Request) (interf
 	err := json.NewDecoder(r.Body).Decode(&request)
 	helper.Catch(err)
 	return request, nil
+}
+
+func getDeleteEmployeeRequestDecoder(_ context.Context, r *http.Request) (interface{}, error) {
+	return deleteEmployeeRequest{
+		EmployeeID: chi.URLParam(r, "id"),
+	}, nil
 }
