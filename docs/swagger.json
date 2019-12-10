@@ -1,0 +1,741 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a sample server celler server.",
+        "title": "Northwind API",
+        "contact": {
+            "name": "API Support",
+            "url": "http://www.swagger.io/support",
+            "email": "support@swagger.io"
+        },
+        "license": {},
+        "version": "1.0"
+    },
+    "paths": {
+        "/customers/paginated": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Customers"
+                ],
+                "summary": "Lista de Clientes",
+                "parameters": [
+                    {
+                        "description": "User Data",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/customer.getCustomersRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "schema": {
+                            "$ref": "#/definitions/customer.CustomerList"
+                        }
+                    }
+                }
+            }
+        },
+        "/employees/": {
+            "put": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Employee"
+                ],
+                "summary": "Update Empleado",
+                "parameters": [
+                    {
+                        "description": "User Data",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/employee.updateEmployeeRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Employee"
+                ],
+                "summary": "Insertar Empleado",
+                "parameters": [
+                    {
+                        "description": "User Data",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/employee.addEmployeeRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            }
+        },
+        "/employees/best": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Employee"
+                ],
+                "summary": "Mejor Empleado",
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "schema": {
+                            "$ref": "#/definitions/employee.BestEmployee"
+                        }
+                    }
+                }
+            }
+        },
+        "/employees/paginated": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Employee"
+                ],
+                "summary": "Lista de Empleados",
+                "parameters": [
+                    {
+                        "description": "User Data",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/employee.getEmployeesRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "schema": {
+                            "$ref": "#/definitions/employee.EmployeeList"
+                        }
+                    }
+                }
+            }
+        },
+        "/employees/{id}": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Employee"
+                ],
+                "summary": "Empleado by Id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Employee Id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "schema": {
+                            "$ref": "#/definitions/employee.Employee"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Employee"
+                ],
+                "summary": "Eliminar Empleado",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Employee Id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            }
+        },
+        "/products/": {
+            "put": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Producto"
+                ],
+                "summary": "Update Producto",
+                "parameters": [
+                    {
+                        "description": "User Data",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/product.updateProductRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Producto"
+                ],
+                "summary": "Insertar Productos",
+                "parameters": [
+                    {
+                        "description": "User Data",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/product.getAddProductRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            }
+        },
+        "/products/bestSellers": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Producto"
+                ],
+                "summary": "Best Sellers",
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "schema": {
+                            "$ref": "#/definitions/product.ProductTopResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/products/paginated": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Producto"
+                ],
+                "summary": "Lista de Productos",
+                "parameters": [
+                    {
+                        "description": "User Data",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/product.getProductsRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "schema": {
+                            "$ref": "#/definitions/product.ProductList"
+                        }
+                    }
+                }
+            }
+        },
+        "/products/{id}": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Producto"
+                ],
+                "summary": "Producto by Id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Producto Id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "schema": {
+                            "$ref": "#/definitions/product.Product"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Producto"
+                ],
+                "summary": "Eliminar Producto",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Producto Id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "customer.Customer": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "businessphone": {
+                    "type": "string"
+                },
+                "city": {
+                    "type": "string"
+                },
+                "company": {
+                    "type": "string"
+                },
+                "firstname": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "lastname": {
+                    "type": "string"
+                }
+            }
+        },
+        "customer.CustomerList": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/customer.Customer"
+                    }
+                },
+                "totalRecords": {
+                    "type": "integer"
+                }
+            }
+        },
+        "customer.getCustomersRequest": {
+            "type": "object",
+            "properties": {
+                "limit": {
+                    "type": "integer"
+                },
+                "offset": {
+                    "type": "integer"
+                }
+            }
+        },
+        "employee.BestEmployee": {
+            "type": "object",
+            "properties": {
+                "firstName": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "totalVentas": {
+                    "type": "integer"
+                }
+            }
+        },
+        "employee.Employee": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "businessPhone": {
+                    "type": "string"
+                },
+                "company": {
+                    "type": "string"
+                },
+                "emailAddress": {
+                    "type": "string"
+                },
+                "faxNumber": {
+                    "type": "string"
+                },
+                "firstName": {
+                    "type": "string"
+                },
+                "homePhone": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "jobTitle": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "mobilePhone": {
+                    "type": "string"
+                }
+            }
+        },
+        "employee.EmployeeList": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/employee.Employee"
+                    }
+                },
+                "totalRecords": {
+                    "type": "integer"
+                }
+            }
+        },
+        "employee.addEmployeeRequest": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "businessPhone": {
+                    "type": "string"
+                },
+                "company": {
+                    "type": "string"
+                },
+                "emailAddress": {
+                    "type": "string"
+                },
+                "faxNumber": {
+                    "type": "string"
+                },
+                "firstName": {
+                    "type": "string"
+                },
+                "homePhone": {
+                    "type": "string"
+                },
+                "jobTitle": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "mobilePhone": {
+                    "type": "string"
+                }
+            }
+        },
+        "employee.getEmployeesRequest": {
+            "type": "object",
+            "properties": {
+                "limit": {
+                    "type": "integer"
+                },
+                "offset": {
+                    "type": "integer"
+                }
+            }
+        },
+        "employee.updateEmployeeRequest": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "businessPhone": {
+                    "type": "string"
+                },
+                "company": {
+                    "type": "string"
+                },
+                "emailAddress": {
+                    "type": "string"
+                },
+                "faxNumber": {
+                    "type": "string"
+                },
+                "firstName": {
+                    "type": "string"
+                },
+                "homePhone": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "jobTitle": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "mobilePhone": {
+                    "type": "string"
+                }
+            }
+        },
+        "product.Product": {
+            "type": "object",
+            "properties": {
+                "category": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "listPrice": {
+                    "type": "number"
+                },
+                "productCode": {
+                    "type": "string"
+                },
+                "productName": {
+                    "type": "string"
+                },
+                "standardCost": {
+                    "type": "number"
+                }
+            }
+        },
+        "product.ProductList": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/product.Product"
+                    }
+                },
+                "totalRecords": {
+                    "type": "integer"
+                }
+            }
+        },
+        "product.ProductTop": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "product_name": {
+                    "type": "string"
+                },
+                "vendidos": {
+                    "type": "number"
+                }
+            }
+        },
+        "product.ProductTopResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/product.ProductTop"
+                    }
+                },
+                "totalVentas": {
+                    "type": "number"
+                }
+            }
+        },
+        "product.getAddProductRequest": {
+            "type": "object",
+            "properties": {
+                "category": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "listPrice": {
+                    "type": "string"
+                },
+                "productCode": {
+                    "type": "string"
+                },
+                "productName": {
+                    "type": "string"
+                },
+                "standardCost": {
+                    "type": "string"
+                }
+            }
+        },
+        "product.getProductsRequest": {
+            "type": "object",
+            "properties": {
+                "limit": {
+                    "type": "integer"
+                },
+                "offset": {
+                    "type": "integer"
+                }
+            }
+        },
+        "product.updateProductRequest": {
+            "type": "object",
+            "properties": {
+                "category": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "listPrice": {
+                    "type": "number"
+                },
+                "productCode": {
+                    "type": "string"
+                },
+                "productName": {
+                    "type": "string"
+                },
+                "standardCost": {
+                    "type": "number"
+                }
+            }
+        }
+    }
+}
